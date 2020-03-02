@@ -14,6 +14,7 @@ export default (payload) => {
         dispatch(start());
         try {
             const user = await registrerUser(payload);
+            console.log('USER_RESPONSE: ', user);
             dispatch(success(user));
         } catch(error) {
             dispatch(registryError(error));

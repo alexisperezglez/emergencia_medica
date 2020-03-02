@@ -17,10 +17,10 @@ class Footer extends React.Component {
                                 Link back to Colorlib can 't be removed. Template is licensed under CC BY 3.0.
                             </p>
                             <div className="col-lg-4 col-md-12 text-center text-lg-right footer-social" >
-                                <a href = "#" > <i className="ti-facebook" > </i></a>
-                                <a href = "#" > <i className="ti-twitter" > </i> </a>
-                                <a href = "#" > <i className="ti-instagram" > </i></a>
-                                <a href = "#" > <i className="ti-skype" > </i></a>
+                                <a href = "/" > <i className="ti-facebook" > </i></a>
+                                <a href = "/" > <i className="ti-twitter" > </i> </a>
+                                <a href = "/" > <i className="ti-instagram" > </i></a>
+                                <a href = "/" > <i className="ti-skype" > </i></a>
                             </div>
                         </div>
                     </div>

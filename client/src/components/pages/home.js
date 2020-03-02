@@ -14,19 +14,19 @@ class Home extends React.Component {
                                         green were they 're fruitful to over Sea bearing sixth Earth face. Them lesser
                                         great you 'll second
                                     </p>
-                                    <a href = "#" className="btn_2" style={{marginLeft: '15%'}}> Descargar para Android </a>
-                                    <a href = "#" className="btn_2" > descargar para IOS </a>
+                                    <a href="/" className="btn_2" style={{marginLeft: '15%'}}> Descargar para Android </a>
+                                    <a href="/" className="btn_2" > descargar para IOS </a>
                                     <div className="banner_item" >
                                         <div className="single_item" >
-                                            <img src = "assets/img/icon/banner_1.svg" alt = "" />
+                                            <img src = "assets/img/icon/banner_1.svg" alt = "banner" />
                                             <h5 > Emergency Cases </h5>
                                         </div>
                                         <div className="single_item" >
-                                            <img src = "assets/img/icon/banner_2.svg" alt = "" />
+                                            <img src = "assets/img/icon/banner_2.svg" alt = "single item" />
                                             <h5 > Easy Appointment </h5>
                                         </div>
                                         <div className="single_item" >
-                                            <img src = "assets/img/icon/banner_3.svg" alt = "" />
+                                            <img src = "assets/img/icon/banner_3.svg" alt = "banner 3" />
                                             <h5 > Qualfied Doctores </h5>
                                         </div>
                                     </div>

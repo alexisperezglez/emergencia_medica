@@ -1,7 +1,7 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
-import { Button } from 'primereact/button';
 import CustomInput from '../../customInputsForm/customInput';
+import CustomPasswordInput from '../../customInputsForm/customPasswordInput';
 
 class RegistryForm extends React.Component {
 
@@ -11,15 +11,14 @@ class RegistryForm extends React.Component {
 
         return(
             <form onSubmit={handleSubmit}>
-                <Field name="name" component={CustomInput} placeholder="Nombre"/>
-                <Field name="lastName" component={CustomInput} placeholder="Apellido"/>
-                <Field name="email" component={CustomInput} placeholder="Correo Electronico"/>
-                <Field name="ci" component={CustomInput} placeholder="Carnet de Identidad"/>
-                <Field name="username" component={CustomInput} placeholder="usuario"/>
-                <Field name="password" component={CustomInput} placeholder="Contrasena"/>
-                <Field name="repeatPassword" component={CustomInput} placeholder="Repetir Contrasena"/>
-                <button type="submit" className="button button-contactForm btn_1">Registrar</button>
-                {/* <Button label="Registrar" onClick={this.handleSubmit}/> */}
+                <Field name="name" component={CustomInput} placeholder="Nombre" label='Nombre:'/>
+                <Field name="lastName" component={CustomInput} placeholder="Apellido" label='Apellido:'/>
+                <Field name="email" component={CustomInput} placeholder="Correo Electronico" label='Correo Electronico:'/>
+                <Field name="ci" component={CustomInput} placeholder="Carnet de Identidad" label='Carnet de Identidad:'/>
+                <Field name="username" component={CustomInput} placeholder="usuario" label='Nombre de Usuario:'/>
+                <Field name="password" component={CustomPasswordInput} placeholder="Contrasena" label='Contrasena:'/>
+                <Field name="repeatPassword" component={CustomPasswordInput} placeholder="Repetir Contrasena" label='Repetir Contrasena:'/>
+                <button type="submit" className="button button-contactForm btn_1" style={{float: 'right'}}>Registrar</button>
             </form>
         );
     }

@@ -1,20 +1,28 @@
-import { REGISTRY_FETCH_START, REGISTRY_FETCH_SUCCESS, REGISTRY_FETCH_FAILED } from '../actions/actionsConst';
+import {
+    LOGIN_FETCH_START,
+    LOGIN_FETCH_FAILED,
+    LOGIN_FETCH_SUCCESS
+} from '../actions/actionsConst';
 
-export function registry(state = {data: [], error: undefined, registred: false}, action) {
+export function login(state = {
+    data: [],
+    error: undefined,
+    registred: false
+}, action) {
     console.log('ACTION: ', action);
     switch (action.type) {
-        case REGISTRY_FETCH_START:
+        case LOGIN_FETCH_START:
             return {
                 ...state,
                 connecting: true,
             };
-        case REGISTRY_FETCH_SUCCESS:
+        case LOGIN_FETCH_SUCCESS:
             return {
                 ...state,
                 connecting: false,
-                registred: true
+                loggedin: true
             };
-        case REGISTRY_FETCH_FAILED:
+        case LOGIN_FETCH_FAILED:
             return {
                 ...state,
                 error: action.payload,

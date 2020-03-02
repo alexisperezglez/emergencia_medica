@@ -69,12 +69,18 @@ class Navbar extends React.Component {
                                         <li className="nav-item" >
                                             <Link className="nav-link" to = "/contact" > Contacto </Link>
                                         </li>
-                                        <li className="d-none d-lg-block" >
-                                            <NavLink className="btn_1" to = "/registry" > Registrarse </NavLink>
-                                        </li>
-                                        <li className="d-none d-lg-block" >
-                                            <NavLink className="btn_1" to = "/login"> Entrar </NavLink>
-                                        </li>
+                                        {localStorage.getItem('bearer_token') ? (
+                                            <li className="d-none d-lg-block" >
+                                                <NavLink className="btn_1" to = "/login"> Salir </NavLink>
+                                            </li>
+                                        ) : (
+                                            <span><li className="d-none d-lg-block" >
+                                                <NavLink className="btn_1" to = "/registry" > Registrarse </NavLink>
+                                            </li>
+                                            <li className="d-none d-lg-block" >
+                                                <NavLink className="btn_1" to = "/login"> Entrar </NavLink>
+                                            </li></span>
+                                        )}
                                     </ul>
                                 </div>
                             </nav>

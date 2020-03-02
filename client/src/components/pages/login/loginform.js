@@ -1,8 +1,12 @@
 import React from 'react';
-import { InputText } from 'primereact/inputtext';
-import { Password } from 'primereact/password';
-import { Button } from 'primereact/button';
-import { Checkbox } from 'primereact/checkbox';
+import {
+  reduxForm,
+  Field
+}
+from 'redux-form';
+import CustomInput from '../../customInputsForm/customInput';
+import CustomPasswordInput from '../../customInputsForm/customPasswordInput';
+
 
 class Loginform extends React.Component {
   constructor(){
@@ -16,7 +20,7 @@ class Loginform extends React.Component {
 
   componentDidMount(){
     //Si inició sesión y el usuario navega a la página de inicio de sesión, se redirige al dashboard
-    if (this.props.autenticacion == true) {
+    if (this.props.autenticacion === true) {
         this.props.history.push("/dashboard");
     }
   }
@@ -39,73 +43,33 @@ class Loginform extends React.Component {
   }
 
   render() {
+
+    const { handleSubmit } = this.props;
+
     return (
-      <form>
-        <div className="input-group mb-3">
-          <span className="p-float-label" style={{ width: '100%' }}>
-            <InputText
-              id="email"
-              value={this.state.email}
-              style={{ width: '100%' }}
-              onChange={this.onChangeEmail}
-            />
-            <label htmlFor="email">Correo Electr&oacute;nico</label>
-          </span>
-        </div>
-        <div className="input-group mb-3">
-          <span className="p-float-label" style={{ width: '100%' }}>
-            <Password
-              id="password"
-              value={this.state.password}
-              style={{ width: '100%' }}
-              onChange={this.onChangePassword}
-              promptLabel="Ingrese su Contrase&ntilde;a"
-              weakLabel="D&eacute;bil"
-              mediumLabel="Media"
-              strongLabel="Fuerte"
-            />
-            <label htmlFor="password">Contrase&ntilde;a</label>
-          </span>
-        </div>
-        <div className="row">
-          <div className="col-12">
-            <Checkbox
-              inputId="cb1"
-              checked={this.state.checked}
-              onChange={this.onChangeChecked}
-            ></Checkbox>
-            <label htmlFor="cb1" className="p-checkbox-label">
-              Recordarme
-            </label>
-          </div>
-          <br />
-          <br />
-          <div className="col-12">
-            <Button
-              label="Entrar"
-              icon="pi pi-sign-in"
-              style={{ width: '100%', paddingBottom: '5px' }}
-              onClick={this.onLogin}
-            />
-            <br />
-            <br />
-            <Button
-              label="Entrar con Google"
-              icon="pi pi-google"
-              style={{ width: '100%' }}
-            />
-            <br />
-            <br />
-            <Button
-              label="Entrar con Facebook"
-              icon="ti-facebook"
-              style={{ width: '100%' }}
-            />
-          </div>
-        </div>
+      <form onSubmit={handleSubmit}>
+        <Field name="username" component={CustomInput} placeholder="Usuario" label='Nombre de Usuario:'/>
+        <Field name="password" component={CustomPasswordInput} placeholder="Contrasena" label='Contrasena:'/>
+        <button type="submit" className="button button-contactForm btn_1" style={{float: 'right'}}>Entrar</button>
       </form>
     );
   }
 }
 
-export default Loginform;
+const validate = (values) => {
+  const errors = {};
+
+  if (!values.username) {
+    errors.username = 'Campo obligatorio';
+  }
+  if (!values.password) {
+    errors.password = 'Campo obligatorio';
+  }
+
+  return errors;
+}
+
+export default reduxForm({
+  form: 'login',
+  validate,
+})(Loginform);

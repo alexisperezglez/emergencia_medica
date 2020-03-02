@@ -21,6 +21,36 @@ export class UserService {
     return await this.userRepository.findOneOrFail(id);
   }
 
+  async findOneByCI(ci: string) {
+    return await this.userRepository.findOneOrFail({ where: { ci } });
+  }
+
+  async findByCIandUsername(username: string, ci: string) {
+    return await this.userRepository.find({ where: [{ username }, { ci }] });
+  }
+
+  async validateUser(userDTO: UserDTO) {
+    const {username, ci} = userDTO;
+    const users = await this.findByCIandUsername(username, ci);
+    console.log('USERS: ', users);
+    if (users.length > 0) {
+      let found: boolean = false;
+      let pos = 0;
+      do {
+        console.log('USER_POS: ', users[pos]);
+        if (users[pos].ci === ci) {
+          found = true;
+          return {error: 'ci'};
+        } else if (users[pos].username === username) {
+          found = true;
+          return {error: 'nombre de usuario'};
+        }
+        pos++;
+      } while(!found && pos < users.length);
+    }
+    return null;
+  }
+
   async saveUser(userDTO: UserDTO) {
     const { name, lastName, ci, email, username, password, roleId } = userDTO;
     const role = await this.roleService.findById(roleId);
