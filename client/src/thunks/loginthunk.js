@@ -11,8 +11,9 @@ const login = async (user) => {
     return await axios.post(url, user);
 }
 
-export default (payload) => {
+export default (sender, payload) => {
     console.log('PAYLOAD_THUNK: ', payload);
+    console.log('SENDER_THUNK: ', sender);
     return async (dispatch, getState) => {
         console.log('STATE_THUNK: ', getState);
         dispatch(start());
@@ -22,6 +23,8 @@ export default (payload) => {
             localStorage.setItem('bearer_token', token.data.access_token);
             dispatch(success(token));
         } catch (error) {
+            console.log('ERRORRRRRR: ', error);
+            sender.growl.show({severity: 'error', summary: 'Bad Credentials', detail:'error'});
             dispatch(loginError(error));
         }
     }
