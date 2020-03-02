@@ -5,6 +5,7 @@ import Home from './pages/home';
 import { Route } from 'react-router-dom';
 import Profile from './pages/profile/profile';
 import Registry from './pages/registry/registry';
+import AuthRouter from './shared/authRouter';
 
 class Layout extends React.Component {
 
@@ -13,9 +14,7 @@ class Layout extends React.Component {
           <div>
             <Navbar />
             <div>
-                <Route path="/profile">
-                  <Profile />
-                </Route>
+                <AuthRouter path="/profile" component={Profile} />
                 <Route path="/registry">
                   <Registry />
                 </Route>
