@@ -24,7 +24,7 @@ export default (sender, payload) => {
             dispatch(success(token));
         } catch (error) {
             console.log('ERRORRRRRR: ', error);
-            sender.growl.show({severity: 'error', summary: 'Bad Credentials', detail:'error'});
+            sender.growl.show({severity: 'error', summary: 'Bad Credentials', detail:'Contrasena o usuario incorrectos.'});
             dispatch(loginError(error));
         }
     }

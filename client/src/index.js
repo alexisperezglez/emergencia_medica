@@ -7,6 +7,38 @@ import {
     Provider
 } from 'react-redux';
 import configureStore from './store/configureStore';
+import decode from 'jwt-decode';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+
+axios.interceptors.request.use((config) => {
+    let accessToken = localStorage.getItem('bearer_token');
+
+    if (accessToken) {
+
+        const {
+            exp
+        } = decode(accessToken);
+
+        if (Date.now() > exp * 1000) {
+            /* if (typeof axiosUserContext.refreshAccessToken !== "function") {
+                throw new Error("Access Token cannot be refreshed");
+            }
+            await axiosUserContext.refreshAccessToken();
+            accessToken = getAccessToken(); */
+            localStorage.removeItem('bearer_token');
+            window.location.href = '/';
+        }
+
+        config.headers["authorization"] = `Bearer ${accessToken}`;
+        config.headers["cache-control"] = `no-cache`;
+    }
+
+    return config;
+}, (error) => {
+    console.error('AXIOS_INTERCEPTOR_ERROR: ', error);
+})
+
 
 const store = configureStore();
 

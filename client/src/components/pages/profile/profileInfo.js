@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class ProfileInfo extends React.Component {
     render() {
@@ -8,4 +9,20 @@ class ProfileInfo extends React.Component {
     }
 }
 
-export default ProfileInfo;
+const mapStateToProps = (state, ownProps) => {
+    console.log('REDUCER_STATE: ', state);
+    const {profileInfo, form, ...others} = state;
+    return {
+        ...ownProps,
+        ...profileInfo,
+        form
+    }
+}
+
+const mapDispatchToProps = (dispatchEvent) => {
+    return {
+
+    }
+}
+
+export default connect()(ProfileInfo);

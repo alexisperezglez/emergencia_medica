@@ -1,8 +1,21 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Timestamp, BeforeInsert, ManyToOne, OneToMany } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  Timestamp,
+  BeforeInsert,
+  ManyToOne,
+  OneToMany,
+  OneToOne,
+  JoinColumn,
+} from 'typeorm';
 import { hashSync } from 'bcrypt';
 import { RoleEntity } from './role.entity';
 import { AilmentEntity } from './ailment.entity';
 import { DiseaseEntity } from './disease.entity';
+import { ProfileEntity } from './profile.entity';
 
 @Entity('user')
 export class UserEntity {
@@ -24,6 +37,10 @@ export class UserEntity {
   createdAt: Timestamp;
   @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
   updatedAt: Timestamp;
+
+  @OneToOne(type => ProfileEntity)
+  @JoinColumn()
+  profile: ProfileEntity
 
   @ManyToOne(
     type => RoleEntity,

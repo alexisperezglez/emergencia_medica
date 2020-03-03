@@ -4,9 +4,11 @@ import {
 } from 'redux-form';
 import { registry } from './reducers';
 import { login } from './loginReducers';
+import { profileInfo } from './profileInfoReducers';
 
 export default combineReducers({
     registry,
     login,
+    profileInfo,
     form: formReducer
 });
