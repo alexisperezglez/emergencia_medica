@@ -1,4 +1,4 @@
-import { Controller, UseGuards, Post, Body, Request, Delete, Param } from '@nestjs/common';
+import { Controller, UseGuards, Post, Body, Request, Delete, Param, Get, Req, Res, HttpStatus } from '@nestjs/common';
 import { AilmentService } from 'src/services/ailment.service';
 import { AuthGuard } from '@nestjs/passport';
 import { AilmentDTO } from 'src/dto/ailment.dto';
@@ -27,5 +27,12 @@ export class AilmentController {
   async deleteAilmentFromUser(@Param('id') id: number) {
     console.log(id);
     return await this.ailmentService.removeAilment(id);
+  }
+
+  @Get()
+  async getAilments(@Req() req, @Res() res) {
+    const { userId } = req.user;
+    const ailments = await this.ailmentService.findAllByUserID(userId);
+    res.status(HttpStatus.OK).send({ ailments });
   }
 }

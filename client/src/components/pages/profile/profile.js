@@ -39,7 +39,7 @@ class Profile extends React.Component {
     render() {
         return(
             <Container title="Perfil">
-                <div>
+                {/* <div>
                     <Avatar
                         width={390}
                         height={295}
@@ -50,7 +50,7 @@ class Profile extends React.Component {
                     <div>
                         <img src={this.state.preview} alt="Preview" />
                     </div>
-                </div>
+                </div> */}
                 <div style={{clear: 'both'}}></div>
                 <PanelContainer header='Informacion'>
                     <ProfileInfo />

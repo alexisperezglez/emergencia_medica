@@ -31,4 +31,8 @@ export class AilmentService {
   async removeAilment(ailmentId: number) {
     return await this.ailmentRepository.delete(ailmentId);
   }
+
+  async findAllByUserID(userId: number) {
+    return await this.ailmentRepository.find({where: { user: {id: userId} }});
+  }
 }
