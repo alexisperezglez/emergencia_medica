@@ -9,7 +9,6 @@ import {
 import configureStore from './store/configureStore';
 import decode from 'jwt-decode';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 
 axios.interceptors.request.use((config) => {
     let accessToken = localStorage.getItem('bearer_token');

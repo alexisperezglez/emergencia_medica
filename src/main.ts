@@ -22,7 +22,9 @@ async function bootstrap() {
     .setTitle('Emergencia Medica')
     .setDescription('The API description')
     .setVersion('1.0')
+    .addServer('http://localhost:3000/api/v1')
     .addTag('emergenciamedica')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, optionsAPI);
   SwaggerModule.setup('api', app, document);
