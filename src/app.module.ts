@@ -39,7 +39,7 @@ import { join } from 'path';
       signOptions: { expiresIn: '3600s' },
     }),
   ],
-  controllers: [AppController, AuthController, UserController, DiseaseController, AilmentController, ProfileController],
+  controllers: [AuthController, UserController, DiseaseController, AilmentController, ProfileController],
   providers: [AppService, UserService, AuthService, JwtStrategy, RoleService, AilmentService, DiseaseService, ProfileService],
 })
 export class AppModule {}

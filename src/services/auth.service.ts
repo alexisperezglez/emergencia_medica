@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { UserService } from './user.service';
 import { JwtService } from '@nestjs/jwt';
 import { compareSync } from 'bcrypt';
+import { UserEntity } from 'src/entities/user.entity';
 
 @Injectable()
 export class AuthService {
@@ -48,5 +49,16 @@ export class AuthService {
         };
     }
     return {error: 'user not found, bad credentials'};
+  }
+
+  async refreshToken(user: UserEntity) {
+    if (user) {
+      const { password, ...payload } = user;
+      return {
+        access_token: this.jwtService.sign(payload),
+      }
+    } else {
+      return { error: 'user not found, bad credentials' };
+    }
   }
 }

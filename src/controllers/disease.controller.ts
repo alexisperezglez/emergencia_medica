@@ -1,9 +1,15 @@
 import { Controller, UseGuards, Post, Request, Body, Delete, Param } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { DiseaseService } from 'src/services/disease.service';
-import { ApiBody } from '@nestjs/swagger';
+import { ApiBody, ApiTags, ApiBearerAuth, ApiHeader } from '@nestjs/swagger';
 import { DiseaseDTO } from 'src/dto/disease.dto';
 
+@ApiTags('diseases')
+@ApiBearerAuth()
+@ApiHeader({
+  name: 'Authorization',
+  description: 'Bearer token',
+})
 @Controller('disease')
 @UseGuards(AuthGuard('jwt'))
 export class DiseaseController {
@@ -12,7 +18,7 @@ export class DiseaseController {
   @Post()
   @ApiBody({ type: [DiseaseDTO] })
   async addDiseaseToUser(@Request() req, @Body() diseases: DiseaseDTO[]) {
-      console.log(diseases);
+    console.log(diseases);
     const { userId, ...others } = req.user;
     const result = await this.diseaseService.saveDiseases(userId, diseases);
     return result;

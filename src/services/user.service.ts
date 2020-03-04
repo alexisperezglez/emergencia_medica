@@ -18,7 +18,7 @@ export class UserService {
   }
 
   async findOneById(id: number) {
-    return await this.userRepository.findOneOrFail(id);
+    return await this.userRepository.findOneOrFail(id, {relations: ['role', 'profile']});
   }
 
   async findOneByCI(ci: string) {
