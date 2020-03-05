@@ -17,3 +17,4 @@ export const AILMENT_FETCH_START    = 'ailment/start';
 export const AILMENT_FETCH_SUCCESS  = 'ailment/success';
 export const AILMENT_FETCH_FAILED   = 'ailment/failed';
 export const AILMENT_VSIBLE_DIALOG   = 'ailment/visibleDialog';
+export const AILMENT_ADD_SUCCESS   = 'ailment/successAdd';

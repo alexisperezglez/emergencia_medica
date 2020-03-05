@@ -36,7 +36,7 @@ import { join } from 'path';
     PassportModule,
     JwtModule.register({
       secret: 'secretkey',
-      signOptions: { expiresIn: '3600s' },
+      signOptions: { expiresIn: '86400s' },
     }),
   ],
   controllers: [AuthController, UserController, DiseaseController, AilmentController, ProfileController],

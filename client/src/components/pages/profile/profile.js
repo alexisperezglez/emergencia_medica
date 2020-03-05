@@ -1,12 +1,12 @@
 import React from 'react';
-import Avatar from 'react-avatar-edit'
+// import Avatar from 'react-avatar-edit'
 import Container from '../../shared/container';
 import ProfileInfo from './profileInfo';
 import Ailments from './ailments';
 import Diseases from './diseases';
 import PanelContainer from '../../shared/panelContainer';
 
-import decode from 'jwt-decode';
+// import decode from 'jwt-decode';
 
 class Profile extends React.Component {
 
@@ -18,10 +18,10 @@ class Profile extends React.Component {
         }
     }
 
-    componentDidMount = () => {
+    /* componentDidMount = () => {
         const token = localStorage.getItem('bearer_token');
         const obj = decode(token);
-    }
+    } */
 
     onClose = () => {
         this.setState({
@@ -51,13 +51,13 @@ class Profile extends React.Component {
                     </div>
                 </div> */}
                 <div style={{clear: 'both'}}></div>
-                <PanelContainer header='Informacion'>
+                <PanelContainer header='Informacion' toggleable={false}>
                     <ProfileInfo />
                 </PanelContainer>
-                <PanelContainer header='Padecimientos'>
+                <PanelContainer header='Padecimientos' toggleable={false}>
                     <Ailments />
                 </PanelContainer>
-                <PanelContainer header='Enfermedades'>
+                <PanelContainer header='Enfermedades' toggleable={false}>
                     <Diseases />
                 </PanelContainer>
 

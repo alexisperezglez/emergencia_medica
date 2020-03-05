@@ -3,10 +3,10 @@ import { Panel } from 'primereact/panel';
 
 class PanelContainer extends React.Component {
     render() {
-        const { children, header, toggeable } = this.props;
+        const { children, header, toggleable } = this.props;
         return (
             <div className="col-lg-12 col-xl-12">
-                <Panel header={header}>
+                <Panel header={header} toggleable={toggleable}>
                     { children }
                 </Panel>
                 <hr/>

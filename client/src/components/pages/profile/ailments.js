@@ -4,7 +4,7 @@ import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { connect } from 'react-redux';
-import {getAilmentsThunk} from '../../../thunks/ailmentthunk';
+import {getAilmentsThunk, addAilmentsThunk} from '../../../thunks/ailmentthunk';
 import AilmentsDialogForm from './ailmentsDialogForm';
 import { toggleVisibleDialog } from '../../../actions/ailmentsActions';
 
@@ -32,6 +32,12 @@ class Ailments extends React.Component {
         toggleVisibleDialog(true);
     }
 
+    handleSubmitForm = (payload) => {
+        console.log('PAYLOAD: ', payload);
+        const { addAilmentsThunk } = this.props;
+        addAilmentsThunk(payload);
+    }
+
     render() {
         const { data } = this.props;
 
@@ -42,14 +48,14 @@ class Ailments extends React.Component {
                         </div>);
         return (
             <div>
-                <h3> Ailments <button className="btn_1" style={{padding: '0px 6px'}}><i className='ti-pencil-alt'></i></button></h3>
+                <h3> Listado de Padecimientos <button className="btn_1" style={{padding: '0px 6px'}}><i className='ti-pencil-alt'></i></button></h3>
                 <DataTable value={ data } dataKey="id" paginator={true} row={10} emptyMessage="No records found" resizableColumns={true} globalFilter={this.state.globalFilter} header={header} alwaysShowPaginator={false}>
                     <Column field="id" header="ID" style={{width:'5%'}}/>
                     <Column field="name" header="Padecimiento" />
                     <Column field="observations" header="Observaciones" excludeGlobalFilter={true} />
                     <Column field="user.name" header="Usuario"  excludeGlobalFilter={true} />
                 </DataTable>
-                <AilmentsDialogForm onHideDialog={this.onHideDialog} visible={this.props.visible} />
+                <AilmentsDialogForm onHideDialog={this.onHideDialog} visible={this.props.visible} initialValues={{id: 1}} handleSubmitForm={this.handleSubmitForm} />
             </div>
         );
     }
@@ -67,6 +73,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatchEvent) => {
     return {
         getAilmentsThunk: () => dispatchEvent(getAilmentsThunk()),
+        addAilmentsThunk: (payload) => dispatchEvent(addAilmentsThunk(payload)),
         toggleVisibleDialog: (val) => dispatchEvent(toggleVisibleDialog(val)),
     }
 }

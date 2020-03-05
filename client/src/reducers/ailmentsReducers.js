@@ -2,7 +2,8 @@ import {
     AILMENT_FETCH_START,
     AILMENT_FETCH_FAILED,
     AILMENT_FETCH_SUCCESS,
-    AILMENT_VSIBLE_DIALOG
+    AILMENT_VSIBLE_DIALOG,
+    AILMENT_ADD_SUCCESS,
 } from '../actions/actionsConst';
 
 
@@ -40,6 +41,12 @@ export function ailments(state = initState, action) {
             return {
                 ...state,
                 visible: action.payload,
+            }
+        case AILMENT_ADD_SUCCESS:
+            return {
+                ...state,
+                visible: false,
+                data: action.payload,
             }
         default:
             return state;

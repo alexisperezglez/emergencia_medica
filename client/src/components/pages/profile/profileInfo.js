@@ -24,4 +24,4 @@ const mapDispatchToProps = (dispatchEvent) => {
     }
 }
 
-export default connect()(ProfileInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileInfo);

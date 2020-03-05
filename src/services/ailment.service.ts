@@ -12,9 +12,9 @@ export class AilmentService {
     private readonly userService: UserService,
   ) {}
 
-  async saveAilments(userId: number, ailments: AilmentDTO[]) {
+  async saveAilments(userId: number, ailments: AilmentDTO) {
     const user = await this.userService.findOneById(userId);
-    let userAilments = [];
+    /* let userAilments = [];
 
     ailments.map(ailment => {
       const item = this.ailmentRepository.create({
@@ -23,9 +23,17 @@ export class AilmentService {
         user,
       });
       userAilments.push(item);
+    }); */
+
+    const { ailment, observations } = ailments;
+
+    const item = this.ailmentRepository.create({
+      name: ailment,
+      observations,
+      user,
     });
 
-    return await this.ailmentRepository.save(userAilments);
+    return await this.ailmentRepository.save(item);
   }
 
   async removeAilment(ailmentId: number) {
@@ -33,6 +41,6 @@ export class AilmentService {
   }
 
   async findAllByUserID(userId: number) {
-    return await this.ailmentRepository.find({where: { user: {id: userId} }});
+    return await this.ailmentRepository.find({where: { user: {id: userId} }, relations: ['user']});
   }
 }

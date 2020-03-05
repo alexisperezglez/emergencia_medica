@@ -33,19 +33,14 @@ export class AuthService {
     const validUser = await this.validateUser(username, password);
     if (validUser) {
         const { password, ...payload } = validUser;
-        /* const payload = {
-            username: validUser.username,
-            userId: validUser.id,
-            sub: validUser.id,
-            role: validUser.role,
-            name: validUser.name,
-            lastname: validUser.lastname,
-            ci: validUser.ci,
-            email: validUser.email,
-        }; */
-        console.log('LOGGED_USER: ', payload);
+        const info = {
+            ...payload,
+            userId: payload.id,
+            sub: payload.id,
+        };
+        console.log('LOGGED_USER: ', info);
         return {
-          access_token: this.jwtService.sign(payload),
+          access_token: this.jwtService.sign(info),
         };
     }
     return {error: 'user not found, bad credentials'};

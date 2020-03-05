@@ -3,6 +3,7 @@ import {
     AILMENT_FETCH_SUCCESS,
     AILMENT_FETCH_FAILED,
     AILMENT_VSIBLE_DIALOG,
+    AILMENT_ADD_SUCCESS,
 } from '../actions/actionsConst'
 
 export const start = () => {
@@ -29,5 +30,12 @@ export const toggleVisibleDialog = (val) => {
     return {
         type: AILMENT_VSIBLE_DIALOG,
         payload: val,
+    }
+}
+
+export const successAdd = (payload) => {
+    return {
+        type: AILMENT_ADD_SUCCESS,
+        payload: payload,
     }
 }
