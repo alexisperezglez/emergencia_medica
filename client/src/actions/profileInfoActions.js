@@ -24,9 +24,9 @@ export const profileInfoError = (error) => {
     }
 }
 
-export const profileInfoDataJWT = () => {
+export const profileInfoDataJWT = (payload) => {
     return {
         type: PROFILE_FETCH_FAILED,
-        payload: error,
+        payload,
     }
 }

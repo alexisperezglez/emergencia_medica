@@ -21,7 +21,7 @@ export function profileInfo(state = initState, action) {
             return {
                 ...state,
                 connecting: false,
-                    loggedin: true
+                loggedin: true,
             };
         case PROFILE_FETCH_FAILED:
             return {

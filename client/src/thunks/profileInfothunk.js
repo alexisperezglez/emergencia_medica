@@ -2,24 +2,24 @@ import axios from 'axios';
 import {
     start,
     success,
-    registryError
+    profileInfoError,
 } from '../actions/profileInfoActions';
 
-const url = 'http://localhost:3000/api/v1/user/registry';
+const url = 'http://localhost:3000/api/v1/auth/profile';
 
-const registrerUser = async (user) => {
-    return await axios.post(url, user);
+const profileUser = async () => {
+    return await axios.get(url);
 }
 
-export default (payload) => {
+export const fetchProfileThunk = () => {
     return async (dispatch, getState) => {
         dispatch(start());
         try {
-            const user = await registrerUser(payload);
+            const user = await profileUser();
             dispatch(success(user));
         } catch (error) {
             console.log('ERROR: ', error);
-            dispatch(registryError(error));
+            dispatch(profileInfoError(error));
         }
     }
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { fetchProfileThunk } from '../../../thunks/profileInfothunk';
 
 class ProfileInfo extends React.Component {
     render() {
@@ -20,7 +21,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatchEvent) => {
     return {
-
+        fetchProfileThunk: () => dispatchEvent(fetchProfileThunk()),
     }
 }
 
