@@ -49,7 +49,7 @@ class Ailments extends React.Component {
         return (
             <div>
                 <h3> Listado de Padecimientos <button className="btn_1" style={{padding: '0px 6px'}}><i className='ti-pencil-alt'></i></button></h3>
-                <DataTable value={ data } dataKey="id" paginator={true} row={10} emptyMessage="No records found" resizableColumns={true} globalFilter={this.state.globalFilter} header={header} alwaysShowPaginator={false}>
+                <DataTable value={ data } dataKey="id" paginator={true} row={10} responsive={true} emptyMessage="No records found" resizableColumns={true} globalFilter={this.state.globalFilter} header={header} alwaysShowPaginator={false}>
                     <Column field="id" header="ID" style={{width:'5%'}}/>
                     <Column field="name" header="Padecimiento" />
                     <Column field="observations" header="Observaciones" excludeGlobalFilter={true} />
