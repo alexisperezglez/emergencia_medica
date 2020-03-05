@@ -4,12 +4,13 @@ import {
     LOGIN_FETCH_SUCCESS
 } from '../actions/actionsConst';
 
-export function login(state = {
+const initState = {
     data: [],
     error: undefined,
     registred: false
-}, action) {
-    console.log('ACTION: ', action);
+}
+
+export function login(state = initState, action) {
     switch (action.type) {
         case LOGIN_FETCH_START:
             return {

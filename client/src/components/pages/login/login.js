@@ -35,12 +35,7 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log('REDUCER_STATE: ', state);
-    const {
-        login,
-        form,
-        ...others
-    } = state;
+    const { login, form, ...others } = state;
     return {
         ...ownProps,
         ...login,

@@ -21,7 +21,6 @@ class Profile extends React.Component {
     componentDidMount = () => {
         const token = localStorage.getItem('bearer_token');
         const obj = decode(token);
-        console.log('TOKEN_DCDE: ', obj);
     }
 
     onClose = () => {

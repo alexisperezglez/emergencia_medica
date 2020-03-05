@@ -10,8 +10,7 @@ class ProfileInfo extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log('REDUCER_STATE: ', state);
-    const {profileInfo, form, ...others} = state;
+    const {profileInfo, form} = state;
     return {
         ...ownProps,
         ...profileInfo,

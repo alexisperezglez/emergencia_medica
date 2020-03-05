@@ -8,15 +8,13 @@ const registrerUser = async (user) => {
 }
 
 export default (payload) => {
-    console.log('PAYLOAD_THUNK: ', payload);
     return async (dispatch, getState) => {
-        console.log('STATE_THUNK: ', getState);
         dispatch(start());
         try {
             const user = await registrerUser(payload);
-            console.log('USER_RESPONSE: ', user);
             dispatch(success(user));
         } catch(error) {
+            console.error('ERROR: ', error);
             dispatch(registryError(error));
         }
     }

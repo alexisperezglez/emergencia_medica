@@ -4,12 +4,13 @@ import {
     PROFILE_FETCH_SUCCESS
 } from '../actions/actionsConst';
 
-export function profileInfo(state = {
+const initState = {
     data: [],
     error: undefined,
-    registred: false
-}, action) {
-    console.log('ACTION: ', action);
+    registred: false,
+}
+
+export function profileInfo(state = initState, action) {
     switch (action.type) {
         case PROFILE_FETCH_START:
             return {

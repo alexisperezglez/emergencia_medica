@@ -9,13 +9,12 @@ const getAilments = async () => {
 
 export const getAilmentsThunk = () => {
     return async (dispatch, getState) => {
-        console.log('STATE_THUNK: ', getState);
         dispatch(start());
         try {
             const ailments = await getAilments();
-            console.log('AILMENTS_RESPONSE: ', ailments.data);
             dispatch(success(ailments.data));
         } catch(error) {
+            console.error('ERROR: ', error);
             dispatch(registryError(error));
         }
     }

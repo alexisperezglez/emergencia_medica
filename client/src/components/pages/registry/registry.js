@@ -28,7 +28,6 @@ class Registry extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-    console.log('REDUCER_STATE: ', state);
     const {registry, form, ...others} = state;
     return {
         ...ownProps,

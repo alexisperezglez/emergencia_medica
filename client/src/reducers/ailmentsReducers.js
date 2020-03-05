@@ -1,7 +1,8 @@
 import {
     AILMENT_FETCH_START,
     AILMENT_FETCH_FAILED,
-    AILMENT_FETCH_SUCCESS
+    AILMENT_FETCH_SUCCESS,
+    AILMENT_VSIBLE_DIALOG
 } from '../actions/actionsConst';
 
 
@@ -13,10 +14,10 @@ const initState = {
     ],
     error: undefined,
     connecting: false,
+    visible: false,
 }
 
 export function ailments(state = initState, action) {
-    console.log('ACTION: ', action);
     switch (action.type) {
         case AILMENT_FETCH_START:
             return {
@@ -35,7 +36,12 @@ export function ailments(state = initState, action) {
                 error: action.payload,
                 data: [],
             }
-            default:
-                return state;
+        case AILMENT_VSIBLE_DIALOG:
+            return {
+                ...state,
+                visible: action.payload,
+            }
+        default:
+            return state;
     }
 }

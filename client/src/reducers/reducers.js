@@ -1,7 +1,12 @@
 import { REGISTRY_FETCH_START, REGISTRY_FETCH_SUCCESS, REGISTRY_FETCH_FAILED } from '../actions/actionsConst';
 
-export function registry(state = {data: [], error: undefined, registred: false}, action) {
-    console.log('ACTION: ', action);
+const initState = {
+    data: [],
+    error: undefined,
+    registred: false,
+}
+
+export function registry(state = initState, action) {
     switch (action.type) {
         case REGISTRY_FETCH_START:
             return {
