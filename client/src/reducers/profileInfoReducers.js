@@ -1,7 +1,8 @@
 import {
     PROFILE_FETCH_START,
     PROFILE_FETCH_FAILED,
-    PROFILE_FETCH_SUCCESS
+    PROFILE_FETCH_SUCCESS,
+    PROFILE_VSIBLE_DIALOG,
 } from '../actions/actionsConst';
 
 const initState = {
@@ -20,15 +21,20 @@ export function profileInfo(state = initState, action) {
         case PROFILE_FETCH_SUCCESS:
             return {
                 ...state,
-                connecting: false,
-                loggedin: true,
+                visible: false,
+                data: action.payload,
             };
         case PROFILE_FETCH_FAILED:
             return {
                 ...state,
                 error: action.payload,
             }
-            default:
-                return state;
+        case PROFILE_VSIBLE_DIALOG:
+            return {
+                ...state,
+                visible: action.payload,
+            }
+        default:
+            return state;
     }
 }

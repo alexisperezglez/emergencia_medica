@@ -14,6 +14,8 @@ export class UserDTO {
     @ApiProperty()
     password: string;
     @ApiProperty()
+    address: string;
+    @ApiProperty()
     roleId: number;
     @ApiPropertyOptional()
     role: string;

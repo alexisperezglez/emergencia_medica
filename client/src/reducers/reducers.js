@@ -1,7 +1,7 @@
 import { REGISTRY_FETCH_START, REGISTRY_FETCH_SUCCESS, REGISTRY_FETCH_FAILED } from '../actions/actionsConst';
 
 const initState = {
-    data: [],
+    data: {},
     error: undefined,
     registred: false,
 }
@@ -17,7 +17,7 @@ export function registry(state = initState, action) {
             return {
                 ...state,
                 connecting: false,
-                registred: true
+                data: action.payload,
             };
         case REGISTRY_FETCH_FAILED:
             return {

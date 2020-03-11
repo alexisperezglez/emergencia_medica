@@ -8,9 +8,10 @@ export const LOGIN_FETCH_SUCCESS    = 'login/success';
 export const LOGIN_FETCH_FAILED     = 'login/failed';
 
 
-export const PROFILE_FETCH_START    = 'login/start';
-export const PROFILE_FETCH_SUCCESS  = 'login/success';
-export const PROFILE_FETCH_FAILED   = 'login/failed';
+export const PROFILE_FETCH_START    = 'profile/start';
+export const PROFILE_FETCH_SUCCESS  = 'profile/success';
+export const PROFILE_FETCH_FAILED   = 'profile/failed';
+export const PROFILE_VSIBLE_DIALOG   = 'profile/visibleDialog';
 
 
 export const AILMENT_FETCH_START    = 'ailment/start';
