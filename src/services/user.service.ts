@@ -5,6 +5,7 @@ import { UserDTO } from 'src/dto/user.dto';
 import { UserEntity } from 'src/entities/user.entity';
 import { RoleService } from './role.service';
 import * as QRcode from 'qrcode';
+import * as Cryptr from 'cryptr';
 
 @Injectable()
 export class UserService {
@@ -54,7 +55,10 @@ export class UserService {
 
   async saveUser(userDTO: UserDTO) {
     const { name, lastName, ci, email, username, password, roleId } = userDTO;
-    const qrcode = await QRcode.toDataURL('http://localhosthost:3000/profile/qr?ci=' + ci);
+    const cryptr = new Cryptr('secretkey');
+    const enc = cryptr.encrypt(ci);
+    const dec = cryptr.decrypt(enc, 'secretkey');
+    const qrcode = await QRcode.toDataURL('http://localhosthost:3000/profile/qr?ci=' + enc);
     const role = await this.roleService.findById(roleId);
     const user = this.userRepository.create({
       name,

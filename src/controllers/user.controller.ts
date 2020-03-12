@@ -3,6 +3,7 @@ import { UserDTO } from 'src/dto/user.dto';
 import { UserService } from 'src/services/user.service';
 import { ApiTags, ApiBearerAuth, ApiHeader } from '@nestjs/swagger';
 import * as qrcode from 'qrcode';
+import * as Cryptr from 'cryptr';
 
 @ApiTags('users')
 @ApiBearerAuth()
@@ -39,6 +40,10 @@ export class UserController {
 
   @Get()
   async qrcode() {
-    return await qrcode.toDataURL('hello world!!');
+    // return await qrcode.toDataURL('hello world!!');
+    const cryptr = new Cryptr('secretkey');
+    const enc = cryptr.encrypt('88020717940');
+    const dec = cryptr.decrypt(enc, 'secretkey');
+    return {enc, dec};
   }
 }
