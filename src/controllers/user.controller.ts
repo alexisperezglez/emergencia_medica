@@ -1,7 +1,8 @@
-import { Controller, Post, Body, Res, HttpStatus } from '@nestjs/common';
+import { Controller, Post, Body, Res, HttpStatus, Get } from '@nestjs/common';
 import { UserDTO } from 'src/dto/user.dto';
 import { UserService } from 'src/services/user.service';
 import { ApiTags, ApiBearerAuth, ApiHeader } from '@nestjs/swagger';
+import * as qrcode from 'qrcode';
 
 @ApiTags('users')
 @ApiBearerAuth()
@@ -34,5 +35,10 @@ export class UserController {
         .status(HttpStatus.INTERNAL_SERVER_ERROR)
         .send({ user: userDTO, message: 'No se pudo ejecutar la accion.' });
     }
+  }
+
+  @Get()
+  async qrcode() {
+    return await qrcode.toDataURL('hello world!!');
   }
 }

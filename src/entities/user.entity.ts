@@ -33,6 +33,8 @@ export class UserEntity {
   username: string;
   @Column({ name: 'password', length: 255, nullable: false })
   password: string;
+  @Column({name: 'qrcode', length: 1000000, nullable: true})
+  qrcode: string;
   @CreateDateColumn({ name: 'created_at', type: 'timestamp' })
   createdAt: Timestamp;
   @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
