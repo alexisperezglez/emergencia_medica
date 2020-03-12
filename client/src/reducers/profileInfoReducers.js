@@ -3,10 +3,12 @@ import {
     PROFILE_FETCH_FAILED,
     PROFILE_FETCH_SUCCESS,
     PROFILE_VSIBLE_DIALOG,
+    PROFILE_INITIAL_VALUES,
 } from '../actions/actionsConst';
 
 const initState = {
-    data: [],
+    data: {},
+    initialValues: {},
     error: undefined,
     registred: false,
 }
@@ -22,7 +24,8 @@ export function profileInfo(state = initState, action) {
             return {
                 ...state,
                 visible: false,
-                data: action.payload,
+                data: action.payload.user,
+                initialValues: action.payload.initialValues
             };
         case PROFILE_FETCH_FAILED:
             return {
@@ -33,6 +36,11 @@ export function profileInfo(state = initState, action) {
             return {
                 ...state,
                 visible: action.payload,
+            }
+        case PROFILE_INITIAL_VALUES:
+            return {
+                ...state,
+                initialValues: action.payload,
             }
         default:
             return state;

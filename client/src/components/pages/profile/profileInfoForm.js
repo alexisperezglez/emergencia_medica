@@ -1,6 +1,7 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import CustomInput from '../../customInputsForm/customInput';
+import { connect } from 'react-redux';
 
 const style = {
     clear: 'both',
@@ -8,8 +9,22 @@ const style = {
 }
 
 class ProfileInfoForm extends React.Component {
+    /* constructor(props) {
+        super(props);
+        this.state = {
+            initialValues: {},
+        }
+    }
+
+    componentDidUpdate() {
+        if(this.props.initialValues) {
+            const { initialValues } = this.props;
+            this.setState({initialValues})
+        }
+    } */
     render() {
-        const { handleSubmit } = this.props;
+        const { handleSubmit, initialValues } = this.props;
+        console.log('***************', initialValues);
         return (
             <form onSubmit={handleSubmit}>
                 <Field name="id" component="input" type="hidden" />
@@ -47,7 +62,16 @@ const validate = (values) => {
     return errors;
 }
 
+const mapStateToProps = (state, ownProps) => {
+    console.log('STATE: ', state);
+    console.log('OWNPROPS: ', ownProps);
+    return {
+        initialValues: {}
+    }
+}
+
 export default reduxForm({
     form: 'profileInfo',
     validate,
+    enableReinitialize: true,
 })(ProfileInfoForm);

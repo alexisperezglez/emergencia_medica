@@ -3,6 +3,7 @@ import {
     PROFILE_FETCH_SUCCESS,
     PROFILE_FETCH_FAILED,
     PROFILE_VSIBLE_DIALOG,
+    PROFILE_INITIAL_VALUES,
 } from '../actions/actionsConst'
 
 export const start = () => {
@@ -35,6 +36,14 @@ export const toggleVisibleDialog = (val) => {
 export const profileInfoDataJWT = (payload) => {
     return {
         type: PROFILE_FETCH_FAILED,
+        payload,
+    }
+}
+
+export const profileInitialValues = (payload) => {
+    console.log('IVAction: ', payload);
+    return {
+        type: PROFILE_INITIAL_VALUES,
         payload,
     }
 }

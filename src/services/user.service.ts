@@ -66,4 +66,18 @@ export class UserService {
 
     return await this.userRepository.save(user);
   }
+
+  async updateUser(user: UserEntity) {
+    try {
+      console.log('USER: ', user);
+      const { id, ailments, diseases, updatedAt, createdAt, ...data } = user;
+      const updatedUser = await this.userRepository.save(user);
+      console.log('USERDATA: ', updatedUser);
+      // return await this.findOneById(id);
+      return updatedUser;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
 }

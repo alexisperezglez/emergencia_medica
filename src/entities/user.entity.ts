@@ -38,7 +38,7 @@ export class UserEntity {
   @UpdateDateColumn({ name: 'updated_at', type: 'timestamp' })
   updatedAt: Timestamp;
 
-  @OneToOne(type => ProfileEntity)
+  @OneToOne(type => ProfileEntity, profile => profile.user, {cascade: true})
   @JoinColumn()
   profile: ProfileEntity
 

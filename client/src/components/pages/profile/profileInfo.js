@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchProfileThunk } from '../../../thunks/profileInfothunk';
-import { toggleVisibleDialog } from '../../../actions/profileInfoActions';
+import { fetchProfileThunk, updateProfileThunk } from '../../../thunks/profileInfothunk';
+import { toggleVisibleDialog, profileInitialValues } from '../../../actions/profileInfoActions';
 import ProfileInfoDialogForm from './profileInfoDialogForm';
+import ProfileInfoForm from './profileInfoForm';
 
 class ProfileInfo extends React.Component {
 
@@ -23,11 +24,28 @@ class ProfileInfo extends React.Component {
 
     handleSubmitForm = (payload) => {
         console.log('PAYLOAD: ', payload);
-        const { addAilmentsThunk } = this.props;
-        addAilmentsThunk(payload);
+        const { updateProfileThunk } = this.props;
+        updateProfileThunk(payload);
     }
 
     render() {
+        const {data, initialValues, visible} = this.props;
+        let values = {};
+        if(data.user) {
+            const {id, ci, name, lastname, username, email} = data.user;
+            values = {
+                id,
+                ci,
+                name,
+                lastName: lastname,
+                username,
+                email,
+                address: data.user.profile ? data.user.profile.address : undefined,
+            };
+        }
+
+        console.log('DATA: ', data);
+        console.log('INITIALVALUES: ', initialValues);
         return(
             <div>
                 <h3>Informacion General <button className="btn_1" style={{padding: '0px 6px'}} onClick={() => this.onShowDialog()} title="Editar"><i className='ti-pencil-alt'></i></button></h3>
@@ -37,7 +55,7 @@ class ProfileInfo extends React.Component {
                             <span className="contact-info__icon"><i className="ti-user"></i></span>
                             <div className="media-body">
                                 <h3>Nombre:</h3>
-                                <p>Alexis Osmany Perez</p>
+                                <p>{data.user ? data.user.name : ''} {data.user ? data.user.lastname : ''}</p>
                             </div>
                         </div>
                         <div className="media contact-info">
@@ -79,7 +97,9 @@ class ProfileInfo extends React.Component {
                         </div>
                     </div>
                 </div>
-                <ProfileInfoDialogForm onHideDialog={this.onHideDialog} visible={this.props.visible} initialValues={{id: 1}} handleSubmitForm={this.handleSubmitForm} />
+                <ProfileInfoDialogForm onHideDialog={this.onHideDialog} visible={visible} >
+                    <ProfileInfoForm onSubmit={this.handleSubmitForm} initialValues={values} />
+                </ProfileInfoDialogForm>
             </div>
         );
     }
@@ -98,6 +118,8 @@ const mapDispatchToProps = (dispatchEvent) => {
     return {
         fetchProfileThunk: () => dispatchEvent(fetchProfileThunk()),
         toggleVisibleDialog: (val) => dispatchEvent(toggleVisibleDialog(val)),
+        updateProfileThunk: (payload) => dispatchEvent(updateProfileThunk(payload)),
+        profileInitialValues: (payload) => dispatchEvent(profileInitialValues(payload)),
     }
 }
 

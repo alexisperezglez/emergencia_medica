@@ -12,6 +12,7 @@ export const PROFILE_FETCH_START    = 'profile/start';
 export const PROFILE_FETCH_SUCCESS  = 'profile/success';
 export const PROFILE_FETCH_FAILED   = 'profile/failed';
 export const PROFILE_VSIBLE_DIALOG   = 'profile/visibleDialog';
+export const PROFILE_INITIAL_VALUES   = 'profile/initialValues';
 
 
 export const AILMENT_FETCH_START    = 'ailment/start';

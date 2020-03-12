@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, Timestamp, OneToOne, OneToMany } from 'typeorm';
 import { DiseaseEntity } from './disease.entity';
+import { UserEntity } from './user.entity';
 
 @Entity('profile')
 export class ProfileEntity {
@@ -14,4 +15,7 @@ export class ProfileEntity {
 
   @OneToMany(type => DiseaseEntity, disease => disease.profile)
   familyRecords: DiseaseEntity[];
+
+  @OneToOne(type => UserEntity, user => user.profile) // specify inverse side as a second parameter
+  user: UserEntity;
 }
