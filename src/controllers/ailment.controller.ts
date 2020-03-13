@@ -21,10 +21,8 @@ export class AilmentController {
     const { userId } = req.user;
     try {
       const result = await this.ailmentService.saveAilments(userId, ailments);
-      console.log("RESULT: ", result);
       if (result) {
         const list = await this.ailmentService.findAllByUserID(userId);
-        console.log("LIST: ", list);
         res.status(HttpStatus.OK).send({ ailments: list });
       } else {
         res.status(HttpStatus.BAD_REQUEST).send({ ailment: ailments, error: true, message: '' });
@@ -35,18 +33,18 @@ export class AilmentController {
   }
 
   @Delete(':id')
-  async deleteAilmentFromUser(@Param('id') id: number) {
-    console.log(id);
-    return await this.ailmentService.removeAilment(id);
+  async deleteAilmentFromUser(@Req() req, @Param('id') id, @Res() res) {
+    const {userId} = req.user;
+    await this.ailmentService.removeAilment(id);
+    const ailments = await this.ailmentService.findAllByUserID(userId);
+    res.status(HttpStatus.OK).send({ailments});
   }
 
   @Get()
   async getAilments(@Req() req, @Res() res) {
-    console.log("USERID: ", req.user);
     const { userId } = req.user;
     const ailments = await this.ailmentService.findAllByUserID(userId);
-    console.log("USERID: ", userId);
-    console.log("AILMENTS: ", ailments);
     res.status(HttpStatus.OK).send({ ailments });
   }
+
 }

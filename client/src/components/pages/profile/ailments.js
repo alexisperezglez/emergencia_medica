@@ -4,7 +4,7 @@ import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { connect } from 'react-redux';
-import {getAilmentsThunk, addAilmentsThunk} from '../../../thunks/ailmentthunk';
+import {getAilmentsThunk, addAilmentsThunk, removeAilmentThunk} from '../../../thunks/ailmentthunk';
 import AilmentsDialogForm from './ailmentsDialogForm';
 import { toggleVisibleDialog } from '../../../actions/ailmentsActions';
 
@@ -37,11 +37,17 @@ class Ailments extends React.Component {
         addAilmentsThunk(payload);
     }
 
-    actionTemplate(rowData, column) {
-        return <div>
-            <Button type="button" icon="pi pi-search" className="p-button-success" style={{marginRight: '.5em'}}></Button>
-            <Button type="button" icon="pi pi-pencil" className="p-button-warning"></Button>
-        </div>;
+    removeAilment = (id) => {
+        const { removeAilmentThunk } = this.props;
+        removeAilmentThunk(id);
+    }
+
+    actionTemplate = (rowData, column) => {
+        const { id } = rowData;
+        return (<div>
+                    <Button type="button" icon="pi pi-trash" className="p-button-success" style={{marginRight: '.5em'}} onClick={() => {this.removeAilment(id)}}></Button>
+                    <Button type="button" icon="pi pi-pencil" className="p-button-warning"></Button>
+                </div>);
     }
 
     render() {
@@ -82,6 +88,7 @@ const mapDispatchToProps = (dispatchEvent) => {
         getAilmentsThunk: () => dispatchEvent(getAilmentsThunk()),
         addAilmentsThunk: (payload) => dispatchEvent(addAilmentsThunk(payload)),
         toggleVisibleDialog: (val) => dispatchEvent(toggleVisibleDialog(val)),
+        removeAilmentThunk: (id) => dispatchEvent(removeAilmentThunk(id)),
     }
 }
 

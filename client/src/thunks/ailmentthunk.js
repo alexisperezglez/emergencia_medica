@@ -11,6 +11,10 @@ const addAilment = async (payload) => {
     return await axios.post(url, payload);
 }
 
+const removeAilment = async (id) => {
+    return await axios.delete(url + '/' + id);
+}
+
 export const getAilmentsThunk = () => {
     return async (dispatch, getState) => {
         dispatch(start());
@@ -30,6 +34,20 @@ export const addAilmentsThunk = (payload) => {
         try {
             const ailments = await addAilment(payload);
             dispatch(successAdd(ailments.data.ailments));
+        } catch (error) {
+            console.error('ERROR: ', error);
+            dispatch(registryError(error));
+        }
+    }
+}
+
+export const removeAilmentThunk = (id) => {
+    return async (dispatch, getState) => {
+        console.log('THUNK');
+        dispatch(start());
+        try {
+            const ailments = await removeAilment(id);
+            dispatch(success(ailments.data.ailments));
         } catch (error) {
             console.error('ERROR: ', error);
             dispatch(registryError(error));

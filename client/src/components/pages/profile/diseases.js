@@ -1,5 +1,5 @@
 import React from 'react';
-import { getDiseasesThunk, addDiseasesThunk } from '../../../thunks/diseasethunk';
+import { getDiseasesThunk, addDiseasesThunk, removeDiseaseThunk } from '../../../thunks/diseasethunk';
 import { toggleVisibleDialog } from '../../../actions/diseasesActions';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
@@ -15,6 +15,7 @@ class Diseases extends React.Component {
         this.state = {
             globalFilter: '',
         }
+        this.removeDisease = this.removeDisease.bind(this);
     }
 
     componentDidMount() {
@@ -37,11 +38,17 @@ class Diseases extends React.Component {
         addDiseasesThunk(payload);
     }
 
-    actionTemplate(rowData, column) {
-        return <div>
-            <Button type="button" icon="pi pi-search" className="p-button-success" style={{marginRight: '.5em'}}></Button>
+    removeDisease = (id) => {
+        const { removeDiseaseThunk } = this.props;
+        removeDiseaseThunk(id);
+    }
+
+    actionTemplate = (rowData, column) => {
+        const {id} = rowData;
+        return (<div>
+            <Button type="button" icon="pi pi-trash" className="p-button-success" style={{marginRight: '.5em'}} onClick={() => {this.removeDisease(id)}}></Button>
             <Button type="button" icon="pi pi-pencil" className="p-button-warning"></Button>
-        </div>;
+        </div>);
     }
 
     render() {
@@ -82,6 +89,7 @@ const mapDispatchToProps = (dispatchEvent) => {
         getDiseasesThunk: () => dispatchEvent(getDiseasesThunk()),
         addDiseasesThunk: (payload) => dispatchEvent(addDiseasesThunk(payload)),
         toggleVisibleDialog: (val) => dispatchEvent(toggleVisibleDialog(val)),
+        removeDiseaseThunk: (id) => dispatchEvent(removeDiseaseThunk(id)),
     }
 }
 

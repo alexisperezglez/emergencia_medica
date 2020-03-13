@@ -46,8 +46,10 @@ class ProfileInfo extends React.Component {
         return(
             <div>
                 <h3>Informacion General <button className="btn_1" style={{padding: '0px 6px'}} onClick={() => this.onShowDialog()} title="Editar"><i className='ti-pencil-alt'></i></button></h3>
-                <img alt="qrcode" src = {data.user ? data.user.qrcode : ''}></img>
                 <div className="row">
+                    <div className="col-lg-3">
+                        <img alt="qrcode" src = {data.user ? data.user.qrcode : ''}></img>
+                    </div>
                     <div className="col-lg-4">
                         <div className="media contact-info">
                             <span className="contact-info__icon"><i className="ti-user"></i></span>
