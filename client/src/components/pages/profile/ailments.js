@@ -33,9 +33,15 @@ class Ailments extends React.Component {
     }
 
     handleSubmitForm = (payload) => {
-        console.log('PAYLOAD: ', payload);
         const { addAilmentsThunk } = this.props;
         addAilmentsThunk(payload);
+    }
+
+    actionTemplate(rowData, column) {
+        return <div>
+            <Button type="button" icon="pi pi-search" className="p-button-success" style={{marginRight: '.5em'}}></Button>
+            <Button type="button" icon="pi pi-pencil" className="p-button-warning"></Button>
+        </div>;
     }
 
     render() {
@@ -54,6 +60,7 @@ class Ailments extends React.Component {
                     <Column field="name" header="Padecimiento" />
                     <Column field="observations" header="Observaciones" excludeGlobalFilter={true} />
                     <Column field="user.name" header="Usuario"  excludeGlobalFilter={true} />
+                    <Column body={this.actionTemplate} style={{textAlign:'center', width: '8em'}}/>
                 </DataTable>
                 <AilmentsDialogForm onHideDialog={this.onHideDialog} visible={this.props.visible} initialValues={{id: 1}} handleSubmitForm={this.handleSubmitForm} />
             </div>

@@ -23,13 +23,12 @@ class ProfileInfo extends React.Component {
     }
 
     handleSubmitForm = (payload) => {
-        console.log('PAYLOAD: ', payload);
         const { updateProfileThunk } = this.props;
         updateProfileThunk(payload);
     }
 
     render() {
-        const {data, initialValues, visible} = this.props;
+        const {data, visible} = this.props;
         let values = {};
         if(data.user) {
             const {id, ci, name, lastname, username, email} = data.user;
@@ -44,8 +43,6 @@ class ProfileInfo extends React.Component {
             };
         }
 
-        console.log('DATA: ', data);
-        console.log('INITIALVALUES: ', initialValues);
         return(
             <div>
                 <h3>Informacion General <button className="btn_1" style={{padding: '0px 6px'}} onClick={() => this.onShowDialog()} title="Editar"><i className='ti-pencil-alt'></i></button></h3>

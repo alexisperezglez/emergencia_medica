@@ -22,8 +22,7 @@ class ProfileInfoForm extends React.Component {
         }
     } */
     render() {
-        const { handleSubmit, initialValues } = this.props;
-        console.log('***************', initialValues);
+        const { handleSubmit } = this.props;
         return (
             <form onSubmit={handleSubmit}>
                 <Field name="id" component="input" type="hidden" />

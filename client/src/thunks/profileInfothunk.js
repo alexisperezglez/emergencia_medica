@@ -3,7 +3,6 @@ import {
     start,
     success,
     profileInfoError,
-    profileInitialValues,
 } from '../actions/profileInfoActions';
 
 const url = 'http://localhost:3000/api/v1/auth/profile';
