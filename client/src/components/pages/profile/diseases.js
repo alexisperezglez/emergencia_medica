@@ -44,11 +44,11 @@ class Diseases extends React.Component {
         const header = (<div style={{'textAlign':'left'}}>
                             <i className="pi pi-search" style={{margin:'4px 4px 0 0'}}></i>
                             <InputText type="search" onInput={(e) => this.setState({globalFilter: e.target.value})} placeholder="Buscar..." size="50"/>
-                            <Button type="button" icon="pi pi-external-link" iconPos="left" label="CSV" onClick={() => this.onShowDialog()} style={{float: 'right'}}></Button>
+                            <Button type="button" icon="pi pi-plus" iconPos="left" label="Nuevo" onClick={() => this.onShowDialog()} style={{float: 'right'}}></Button>
                         </div>);
         return (
             <div>
-                <h3> Listado de Enfermedades <button className="btn_1" style={{padding: '0px 6px'}}><i className='ti-pencil-alt'></i></button></h3>
+                <h3> Listado de Enfermedades </h3>
                 <DataTable value={ data } dataKey="id" paginator={true} row={10} responsive={true} emptyMessage="No records found" resizableColumns={true} globalFilter={this.state.globalFilter} header={header} alwaysShowPaginator={false}>
                     <Column field="id" header="ID" style={{width:'5%'}}/>
                     <Column field="name" header="Padecimiento" />
