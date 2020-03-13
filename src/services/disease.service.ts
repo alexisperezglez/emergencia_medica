@@ -12,23 +12,23 @@ export class DiseaseService {
     private readonly userService: UserService,
   ) {}
 
-  async saveDiseases(userId: number, diseases: DiseaseDTO[]) {
+  async saveDiseases(userId: number, disease: DiseaseDTO) {
     const user = await this.userService.findOneById(userId);
-    const userDiseases: DiseaseEntity[] = [];
 
-    diseases.map(disease => {
-      const item = this.diseaseRepository.create({
-        name: disease.disease,
-        observations: disease.observations,
-        user,
-      });
-      userDiseases.push(item);
+    const item = this.diseaseRepository.create({
+      name: disease.disease,
+      observations: disease.observations,
+      user,
     });
 
-    return await this.diseaseRepository.save(userDiseases);
+    return await this.diseaseRepository.save(item);
   }
 
   async removeDisease(diseaseId: number) {
     return await this.diseaseRepository.delete(diseaseId);
+  }
+
+  async findDiseasesByUser(userId: number) {
+    return await this.diseaseRepository.find({user: {id: userId}});
   }
 }

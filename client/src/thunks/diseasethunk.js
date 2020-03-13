@@ -29,6 +29,7 @@ export const addDiseasesThunk = (payload) => {
         dispatch(start());
         try {
             const diseases = await addDisease(payload);
+            console.log(diseases.data);
             dispatch(successAdd(diseases.data.diseases));
         } catch (error) {
             console.error('ERROR: ', error);

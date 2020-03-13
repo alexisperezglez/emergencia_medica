@@ -25,7 +25,7 @@ class DiseasesForm extends React.Component {
 const validate = (values) => {
     const errors = {};
 
-    if (!values.ailment) {
+    if (!values.disease) {
         errors.disease = 'Campo obligatorio';
     }
 
