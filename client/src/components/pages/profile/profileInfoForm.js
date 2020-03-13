@@ -1,7 +1,6 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import CustomInput from '../../customInputsForm/customInput';
-import { connect } from 'react-redux';
 
 const style = {
     clear: 'both',
@@ -62,13 +61,13 @@ const validate = (values) => {
     return errors;
 }
 
-const mapStateToProps = (state, ownProps) => {
+/* const mapStateToProps = (state, ownProps) => {
     console.log('STATE: ', state);
     console.log('OWNPROPS: ', ownProps);
     return {
         initialValues: {}
     }
-}
+} */
 
 export default reduxForm({
     form: 'profileInfo',

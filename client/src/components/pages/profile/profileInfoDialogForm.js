@@ -1,6 +1,5 @@
 import React from 'react';
 import { Dialog } from 'primereact/dialog';
-import ProfileInfoForm from './profileInfoForm';
 
 class ProfileInfoDialogForm extends React.Component {
 

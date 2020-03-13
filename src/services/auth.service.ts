@@ -32,11 +32,11 @@ export class AuthService {
     const {username, password} = user;
     const validUser = await this.validateUser(username, password);
     if (validUser) {
-        const { password, ...payload } = validUser;
+        const { password, qrcode, id, ...payload } = validUser;
         const info = {
             ...payload,
-            userId: payload.id,
-            sub: payload.id,
+            userId: id,
+            sub: id,
         };
         console.log('LOGGED_USER: ', info);
         return {

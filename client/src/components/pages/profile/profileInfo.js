@@ -49,7 +49,7 @@ class ProfileInfo extends React.Component {
         return(
             <div>
                 <h3>Informacion General <button className="btn_1" style={{padding: '0px 6px'}} onClick={() => this.onShowDialog()} title="Editar"><i className='ti-pencil-alt'></i></button></h3>
-                <img src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHQAAAB0CAYAAABUmhYnAAAAAklEQVR4AewaftIAAAKsSURBVO3BQW7sWAwEwSxC979yjpdcPUCQ2t/NYUT8wRqjWKMUa5RijVKsUYo1SrFGKdYoxRqlWKMUa5RijVKsUYo1SrFGKdYoFw8l4TepdEnoVO5IQqfSJeE3qTxRrFGKNUqxRrl4mcqbknCicpKEE5U7VN6UhDcVa5RijVKsUS4+LAl3qDyRhN+UhDtUPqlYoxRrlGKNcvHlktCpdEnoVLokdCrfrFijFGuUYo1yMZzK/0mxRinWKMUa5eLDVP6lJJyoPKHylxRrlGKNUqxRLl6WhL9MpUtCp3KShL+sWKMUa5RijXLxkMo3ScIdKt+kWKMUa5RijXLxUBI6lTuS0Kl0SbgjCZ1Kl4ROpUvCm1ROktCpPFGsUYo1SrFGiT/4oCR0Kl0STlS6JDyh0iWhU7kjCU+ovKlYoxRrlGKNcvFQEjqVkyR0KidJOFG5IwmdSpeEE5UTlZMkfFKxRinWKMUaJf7gRUl4k0qXhBOVLgmdykkSOpVvUqxRijVKsUa5eCgJJypdEk5UuiR0KneonCShUzlJQqdyRxI6lTcVa5RijVKsUeIPvlgSOpUuCZ3KSRLepNIloVN5U7FGKdYoxRrl4qEk/CaVJ5LQqXQqXRI6lS4Jf0mxRinWKMUa5eJlKm9KwolKl4QTlZMkdCpdEk5U/qVijVKsUYo1ysWHJeEOlTuS0Kl0SThJwh0qT6h8UrFGKdYoxRrl4supdEm4Q+WJJJyodEk4UXmiWKMUa5RijXIxjEqXhC4JncodSXhC5ZOKNUqxRinWKBcfpvKbktCpdEk4SUKn0qn8ZcUapVijFGuUi5cl4Tcl4Ykk3JGEE5U7ktCpPFGsUYo1SrFGiT9YYxRrlGKNUqxRijVKsUYp1ijFGqVYoxRrlGKNUqxRijVKsUYp1ijFGuU/oMIB+nWTl0QAAAAASUVORK5CYII="></img>
+                <img alt="qrcode" src = {data.user ? data.user.qrcode : ''}></img>
                 <div className="row">
                     <div className="col-lg-4">
                         <div className="media contact-info">
@@ -63,14 +63,14 @@ class ProfileInfo extends React.Component {
                             <span className="contact-info__icon"><i className="ti-email"></i></span>
                             <div className="media-body">
                                 <h3>Correo:</h3>
-                                <p>alexisperezglez@gmail.com</p>
+                                <p>{data.user ? data.user.email : ''}</p>
                             </div>
                         </div>
                         <div className="media contact-info">
                             <span className="contact-info__icon"><i className="ti-user"></i></span>
                             <div className="media-body">
                                 <h3>Usuario</h3>
-                                <p>admin</p>
+                                <p>{data.user ? data.user.username : ''}</p>
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@ class ProfileInfo extends React.Component {
                             <span className="contact-info__icon"><i className="ti-credit-card"></i></span>
                             <div className="media-body">
                                 <h3>CI:</h3>
-                                <p>88020717940</p>
+                                <p>{data.user ? data.user.ci : ''}</p>
                             </div>
                         </div>
                         <div className="media contact-info">
@@ -93,7 +93,7 @@ class ProfileInfo extends React.Component {
                             <span className="contact-info__icon"><i className="ti-location-pin"></i></span>
                             <div className="media-body">
                                 <h3>Direccion</h3>
-                                <p>falgueras #222, Cerro. La Habana, Cuba.</p>
+                                <p>{data.user && data.user.profile ? data.user.profile.address : ''}</p>
                             </div>
                         </div>
                     </div>
