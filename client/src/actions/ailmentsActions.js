@@ -4,6 +4,7 @@ import {
     AILMENT_FETCH_FAILED,
     AILMENT_VSIBLE_DIALOG,
     AILMENT_ADD_SUCCESS,
+    AILMENT_INITIAL_VALUES,
 } from '../actions/actionsConst'
 
 export const start = () => {
@@ -30,6 +31,13 @@ export const toggleVisibleDialog = (val) => {
     return {
         type: AILMENT_VSIBLE_DIALOG,
         payload: val,
+    }
+}
+
+export const changeInitialValues = (data) => {
+    return {
+        type: AILMENT_INITIAL_VALUES,
+        payload: data,
     }
 }
 

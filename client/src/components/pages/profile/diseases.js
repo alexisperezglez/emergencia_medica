@@ -7,6 +7,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import DiseasesDialogForm from './diseasesDialogForm';
 import { connect } from 'react-redux';
+import { changeInitialValues } from '../../../actions/diseasesActions';
 
 class Diseases extends React.Component {
 
@@ -43,16 +44,23 @@ class Diseases extends React.Component {
         removeDiseaseThunk(id);
     }
 
+    editDisease = (data) => {
+        console.log(data);
+        const {name, observations} = data;
+        const {changeInitialValues} = this.props;
+        changeInitialValues({disease: name, observations});
+    }
+
     actionTemplate = (rowData, column) => {
         const {id} = rowData;
         return (<div>
             <Button type="button" icon="pi pi-trash" className="p-button-success" style={{marginRight: '.5em'}} onClick={() => {this.removeDisease(id)}}></Button>
-            <Button type="button" icon="pi pi-pencil" className="p-button-warning"></Button>
+            <Button type="button" icon="pi pi-pencil" className="p-button-warning" onClick={() => {this.editDisease(rowData)}}></Button>
         </div>);
     }
 
     render() {
-        const { data } = this.props;
+        const { data, initialValues } = this.props;
 
         const header = (<div style={{'textAlign':'left'}}>
                             <i className="pi pi-search" style={{margin:'4px 4px 0 0'}}></i>
@@ -69,7 +77,7 @@ class Diseases extends React.Component {
                     <Column field="user.name" header="Usuario"  excludeGlobalFilter={true} />
                     <Column body={this.actionTemplate} style={{textAlign:'center', width: '8em'}}/>
                 </DataTable>
-                <DiseasesDialogForm onHideDialog={this.onHideDialog} visible={this.props.visible} initialValues={{id: 1}} handleSubmitForm={this.handleSubmitForm} />
+                <DiseasesDialogForm onHideDialog={this.onHideDialog} visible={this.props.visible} initialValues={initialValues} handleSubmitForm={this.handleSubmitForm} />
             </div>
         );
     }
@@ -90,6 +98,7 @@ const mapDispatchToProps = (dispatchEvent) => {
         addDiseasesThunk: (payload) => dispatchEvent(addDiseasesThunk(payload)),
         toggleVisibleDialog: (val) => dispatchEvent(toggleVisibleDialog(val)),
         removeDiseaseThunk: (id) => dispatchEvent(removeDiseaseThunk(id)),
+        changeInitialValues: (data) => dispatchEvent(changeInitialValues(data)),
     }
 }
 

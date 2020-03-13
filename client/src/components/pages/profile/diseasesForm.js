@@ -35,4 +35,5 @@ const validate = (values) => {
 export default reduxForm({
     form: 'diseases',
     validate,
+    enableReinitialize: true,
 })(DiseasesForm);

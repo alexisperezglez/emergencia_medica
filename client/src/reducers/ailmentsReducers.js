@@ -4,6 +4,7 @@ import {
     AILMENT_FETCH_SUCCESS,
     AILMENT_VSIBLE_DIALOG,
     AILMENT_ADD_SUCCESS,
+    AILMENT_INITIAL_VALUES,
 } from '../actions/actionsConst';
 
 
@@ -16,6 +17,7 @@ const initState = {
     error: undefined,
     connecting: false,
     visible: false,
+    initialValues: {}
 }
 
 export function ailments(state = initState, action) {
@@ -47,6 +49,12 @@ export function ailments(state = initState, action) {
                 ...state,
                 visible: false,
                 data: action.payload,
+            }
+        case AILMENT_INITIAL_VALUES:
+            return {
+                ...state,
+                visible: true,
+                initialValues: action.payload,
             }
         default:
             return state;

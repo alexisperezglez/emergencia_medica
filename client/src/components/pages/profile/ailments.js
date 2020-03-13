@@ -6,7 +6,7 @@ import { Button } from 'primereact/button';
 import { connect } from 'react-redux';
 import {getAilmentsThunk, addAilmentsThunk, removeAilmentThunk} from '../../../thunks/ailmentthunk';
 import AilmentsDialogForm from './ailmentsDialogForm';
-import { toggleVisibleDialog } from '../../../actions/ailmentsActions';
+import { toggleVisibleDialog, changeInitialValues } from '../../../actions/ailmentsActions';
 
 class Ailments extends React.Component {
 
@@ -42,16 +42,22 @@ class Ailments extends React.Component {
         removeAilmentThunk(id);
     }
 
+    editAilment = (data) => {
+        const {name, observations} = data;
+        const {changeInitialValues} = this.props;
+        changeInitialValues({ailment: name, observations});
+    }
+
     actionTemplate = (rowData, column) => {
         const { id } = rowData;
         return (<div>
                     <Button type="button" icon="pi pi-trash" className="p-button-success" style={{marginRight: '.5em'}} onClick={() => {this.removeAilment(id)}}></Button>
-                    <Button type="button" icon="pi pi-pencil" className="p-button-warning"></Button>
+                    <Button type="button" icon="pi pi-pencil" className="p-button-warning" onClick={() => {this.editAilment(rowData)}}></Button>
                 </div>);
     }
 
     render() {
-        const { data } = this.props;
+        const { data, initialValues } = this.props;
 
         const header = (<div style={{'textAlign':'left'}}>
                             <i className="pi pi-search" style={{margin:'4px 4px 0 0'}}></i>
@@ -68,7 +74,7 @@ class Ailments extends React.Component {
                     <Column field="user.name" header="Usuario"  excludeGlobalFilter={true} />
                     <Column body={this.actionTemplate} style={{textAlign:'center', width: '8em'}}/>
                 </DataTable>
-                <AilmentsDialogForm onHideDialog={this.onHideDialog} visible={this.props.visible} initialValues={{id: 1}} handleSubmitForm={this.handleSubmitForm} />
+                <AilmentsDialogForm onHideDialog={this.onHideDialog} visible={this.props.visible} initialValues={initialValues} handleSubmitForm={this.handleSubmitForm} />
             </div>
         );
     }
@@ -89,6 +95,7 @@ const mapDispatchToProps = (dispatchEvent) => {
         addAilmentsThunk: (payload) => dispatchEvent(addAilmentsThunk(payload)),
         toggleVisibleDialog: (val) => dispatchEvent(toggleVisibleDialog(val)),
         removeAilmentThunk: (id) => dispatchEvent(removeAilmentThunk(id)),
+        changeInitialValues: (data) => dispatchEvent(changeInitialValues(data)),
     }
 }
 

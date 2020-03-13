@@ -4,6 +4,7 @@ import {
     DISEASE_FETCH_SUCCESS,
     DISEASE_VSIBLE_DIALOG,
     DISEASE_ADD_SUCCESS,
+    DISEASE_INITIAL_VALUES,
 } from '../actions/actionsConst';
 
 
@@ -16,6 +17,7 @@ const initState = {
     error: undefined,
     connecting: false,
     visible: false,
+    initialValues: {},
 }
 
 export function diseases(state = initState, action) {
@@ -47,6 +49,12 @@ export function diseases(state = initState, action) {
                 ...state,
                 visible: false,
                 data: action.payload,
+            }
+        case DISEASE_INITIAL_VALUES:
+            return {
+                ...state,
+                visible: true,
+                initialValues: action.payload,
             }
         default:
             return state;
